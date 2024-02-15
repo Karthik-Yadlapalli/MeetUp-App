@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meet_up/app_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -34,7 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
               ),
               const Text('Hi, Welcome Back!',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: Color.fromARGB(255, 66, 133, 70))),
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w800,
+                      color: Color.fromARGB(255, 66, 133, 70))),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 10 * 0.40,
                 width: double.infinity,
@@ -47,19 +51,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Please sign in to continue",
-                        style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: Container(
                           height: MediaQuery.of(context).size.height / 10 * 0.6,
-                          decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(6)),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(6)),
                           child: TextField(
                             controller: _emailCtrl,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.height / 10 * 0.08,
-                                vertical: MediaQuery.of(context).size.height / 10 * 0.06,
+                                horizontal: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.08,
+                                vertical: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.06,
                               ),
                               hintText: 'Email',
                               border: InputBorder.none,
@@ -72,7 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           Text(
                             "Sign in with OTP",
-                            style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue[400],
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
@@ -90,19 +106,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Password",
-                        style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: Container(
                           height: MediaQuery.of(context).size.height / 10 * 0.6,
-                          decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(6)),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(6)),
                           child: TextField(
                             controller: _passwordCtrl,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.height / 10 * 0.08,
-                                vertical: MediaQuery.of(context).size.height / 10 * 0.06,
+                                horizontal: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.08,
+                                vertical: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.06,
                               ),
                               hintText: 'Password',
                               border: InputBorder.none,
@@ -128,7 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           Text(
                             "Forget password",
-                            style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue[400],
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
@@ -139,10 +167,15 @@ class _LoginScreenState extends State<LoginScreen> {
               //* Submit button
               ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<MaterialColor>(Colors.blue),
+                      backgroundColor:
+                          MaterialStateProperty.all<MaterialColor>(Colors.blue),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)))),
-                  onPressed: () {},
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6.0)))),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => AppHome()));
+                  },
                   child: const Text(
                     "Submit",
                     style: TextStyle(
@@ -156,21 +189,28 @@ class _LoginScreenState extends State<LoginScreen> {
               //*Division
               Stack(
                 children: [
-                  const Divider(
+                  Divider(
+                    color: Colors.grey[300],
+                    indent: 18,
+                    endIndent: 18,
                     thickness: 2,
                   ),
                   Positioned(
                       bottom: 1,
                       // top: 1,
-                      left: MediaQuery.of(context).size.width / 2 - 1,
-                      child: Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              "or",
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                            ),
-                          ))),
+                      left: MediaQuery.of(context).size.width / 2 - 16,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 15, left: 15),
+                        child: Container(
+                            color: Colors.white,
+                            child: const Center(
+                              child: Text(
+                                "or",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      )),
                 ],
               ),
 
@@ -264,9 +304,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Login Here",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[400], fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold)),
                     Text("Sign UP",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[400], fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -287,7 +333,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: <TextSpan>[
                           TextSpan(
                               text: "Terms of use & privacy policy",
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),

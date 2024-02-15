@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class DescriptionScreen extends StatelessWidget {
-  const DescriptionScreen({super.key});
+  DescriptionScreen({super.key});
+  final List<String> meetups = [
+    "assets/meetups/meet2.png",
+    "assets/meetups/meet3.png",
+    "assets/meetups/meet1.png",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,11 @@ class DescriptionScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         forceMaterialTransparency: true,
-        leading: Icon(Icons.arrow_back_ios),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(Icons.arrow_back_ios)),
         title: Text(
           'Description',
           style: TextStyle(fontSize: 18),
@@ -46,21 +56,66 @@ class DescriptionScreen extends StatelessWidget {
 
               //* Image Container
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height / 10 * 4.2,
                   child: Column(
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height / 10 * 3.5,
-                        color: Colors.grey[300],
-                        child: Placeholder(),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12)),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              topRight: Radius.circular(12)),
+                          child: ImageSlideshow(
+                            initialPage: 0,
+                            indicatorColor: Colors.blue,
+                            indicatorBackgroundColor: Colors.grey[200],
+                            indicatorBottomPadding: 10,
+                            // indicatorPadding: 20,
+                            height: 20,
+                            children: [
+                              Image.asset(
+                                meetups[0],
+                                fit: BoxFit.cover,
+                              ),
+                              Image.asset(
+                                meetups[1],
+                                fit: BoxFit.cover,
+                              ),
+                              Image.asset(
+                                meetups[2],
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       Container(
+                        padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                         height: MediaQuery.of(context).size.height / 10 * 0.5,
-                        color: Colors.grey[300],
-                        child: Row(
-                          children: [Icon(Icons.download)],
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12)),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.download),
+                            Icon(Icons.bookmark),
+                            Icon(Icons.favorite),
+                            Icon(Icons.fullscreen),
+                            Icon(Icons.star),
+                            Icon(Icons.share),
+                          ],
                         ),
                       ),
                     ],
@@ -84,9 +139,12 @@ class DescriptionScreen extends StatelessWidget {
                       width: 15,
                     ),
                     Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[200]),
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 1, bottom: 1, right: 3, left: 3),
+                          padding: const EdgeInsets.only(
+                              top: 1, bottom: 1, right: 3, left: 3),
                           child: Row(
                             children: [
                               Icon(
@@ -121,7 +179,8 @@ class DescriptionScreen extends StatelessWidget {
 
               //*
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height / 10 * 1.3,
                   child: Column(
@@ -129,7 +188,10 @@ class DescriptionScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Actor Name',
-                        style: TextStyle(fontSize: 20, color: Colors.blue[500], fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[500],
+                            fontWeight: FontWeight.bold),
                       ),
                       const Text(
                         'Indian Actress',
@@ -183,7 +245,10 @@ class DescriptionScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
                           "About",
-                          style: TextStyle(fontSize: 20, color: Colors.blue[500], fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blue[500],
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Text(
@@ -193,7 +258,10 @@ class DescriptionScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10.0),
                             child: Text("See More",
-                                style: TextStyle(fontSize: 18, color: Colors.blue[500], fontWeight: FontWeight.bold)),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.blue[500],
+                                    fontWeight: FontWeight.bold)),
                           ))
                     ],
                   ),

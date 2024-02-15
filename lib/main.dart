@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meet_up/app_home.dart';
 import 'package:meet_up/screens/description_screen.dart';
 import 'package:meet_up/screens/login_screen.dart';
+import 'package:meet_up/screens/meetup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DescriptionScreen(),
+      home: LoginScreen(),
     );
   }
 }

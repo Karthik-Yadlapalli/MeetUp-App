@@ -16,7 +16,7 @@ class _AppHomeState extends State<AppHome> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const ProjectScreen(),
-    const MeetUpScreen(),
+    MeetUpScreen(),
     const ExploreScreen(),
     const ProfileScreen()
   ];
@@ -33,20 +33,16 @@ class _AppHomeState extends State<AppHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: [
-          SizedBox(
-            child: _pages[_selectedIndex],
-          ),
-        ],
-      )),
+        child: _pages[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
           showUnselectedLabels: true,
           onTap: _selectedPage,
-          selectedItemColor: Color.fromARGB(187, 151, 250, 229).withOpacity(0.6),
+          selectedItemColor:
+              Color.fromARGB(209, 7, 58, 47).withOpacity(0.6),
           unselectedItemColor: Colors.black,
           items: [
             BottomNavigationBarItem(
