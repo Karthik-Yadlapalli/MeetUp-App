@@ -3,8 +3,10 @@ import 'package:meet_up/app_home.dart';
 import 'package:meet_up/screens/description_screen.dart';
 import 'package:meet_up/screens/login_screen.dart';
 import 'package:meet_up/screens/meetup_screen.dart';
+import 'package:meet_up/services/auth_service.dart';
 
 void main() {
+  Authorization().authenticate("test45@yopmail.com","Test@123");
   runApp(const MyApp());
 }
 

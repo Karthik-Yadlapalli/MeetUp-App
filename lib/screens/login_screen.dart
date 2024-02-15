@@ -3,7 +3,6 @@ import 'package:meet_up/app_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -14,6 +13,20 @@ class _LoginScreenState extends State<LoginScreen> {
   //* text controllers
   final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
+
+  //*Varibles
+  final String email = "";
+  final String password = "";
+
+//*Save form
+
+  void submit(String email, String password) {
+    if (email == "" || password == "") {
+      return;
+    }else{
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
               //* Submit button
               ElevatedButton(
                   style: ButtonStyle(
+                      textStyle: MaterialStateProperty.all<TextStyle>(
+                          TextStyle(color: Colors.white)),
                       backgroundColor:
                           MaterialStateProperty.all<MaterialColor>(Colors.blue),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(

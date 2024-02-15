@@ -44,7 +44,7 @@ class _AppHomeState extends State<AppHome> {
           selectedItemColor:
               Color.fromARGB(209, 7, 58, 47).withOpacity(0.6),
           unselectedItemColor: Colors.black,
-          items: [
+          items:const  [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
