@@ -18,6 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
+  bool passwordVisiblity = true;
+
   @override
   Widget build(BuildContext context) {
     Future<void> submit(String email, String password) async {
@@ -32,10 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
       final scaffold = ScaffoldMessenger.of(context);
       scaffold.showSnackBar(
         SnackBar(
+          padding: EdgeInsets.all(20),
           backgroundColor: Colors.red,
-          content: Text(
-            errorMsg,
-            style: TextStyle(color: Colors.white),
+          content: Center(
+            child: Text(
+              errorMsg,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           duration: Duration(milliseconds: 500),
         ),
@@ -60,7 +65,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
               ),
               const Text('Hi, Welcome Back!',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: Color.fromARGB(255, 66, 133, 70))),
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w800,
+                      color: Color.fromARGB(255, 66, 133, 70))),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 10 * 0.40,
                 width: double.infinity,
@@ -73,19 +81,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Please sign in to continue",
-                        style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: Container(
                           height: MediaQuery.of(context).size.height / 10 * 0.6,
-                          decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(6)),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(6)),
                           child: TextField(
                             controller: emailCtrl,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.height / 10 * 0.08,
-                                vertical: MediaQuery.of(context).size.height / 10 * 0.06,
+                                horizontal: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.08,
+                                vertical: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.06,
                               ),
                               hintText: 'Email',
                               border: InputBorder.none,
@@ -98,7 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           Text(
                             "Sign in with OTP",
-                            style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue[400],
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
@@ -116,19 +136,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Password",
-                        style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                         child: Container(
                           height: MediaQuery.of(context).size.height / 10 * 0.6,
-                          decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(6)),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(6)),
                           child: TextField(
                             controller: passwordCtrl,
+                            obscureText: passwordVisiblity,
                             decoration: InputDecoration(
+                              suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    passwordVisiblity = !passwordVisiblity;
+                                    setState(() {});
+                                  },
+                                  child: passwordVisiblity
+                                      ? Icon(Icons.visibility_off)
+                                      : Icon(Icons.visibility)),
                               contentPadding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.height / 10 * 0.08,
-                                vertical: MediaQuery.of(context).size.height / 10 * 0.06,
+                                horizontal: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.08,
+                                vertical: MediaQuery.of(context).size.height /
+                                    10 *
+                                    0.06,
                               ),
                               hintText: 'Password',
                               border: InputBorder.none,
@@ -154,7 +192,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           const Spacer(),
                           Text(
                             "Forget password",
-                            style: TextStyle(fontSize: 18, color: Colors.blue[400], fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blue[400],
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
@@ -166,7 +207,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
               GestureDetector(
                 onTap: () async {
-                  if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$').hasMatch(emailCtrl.text)) {
+                  if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                      .hasMatch(emailCtrl.text)) {
                     error = true;
                     errorMsg = "Incorrect Id or password!";
                     _showToast(context);
@@ -174,9 +216,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     await submit(emailCtrl.text, passwordCtrl.text);
                     if (access_token != '' && access_token != null) {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => AppHome()));
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => AppHome()));
                     } else {
-                      errorMsg = "Incorrect Id or password!";
+                      errorMsg = "Incorrect ID or password!";
                       _showToast(context);
                       setState(() {});
                     }
@@ -184,9 +227,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Container(
                   height: 45,
-                  width: 180,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: Colors.blue),
-                  child: Center(
+                  width: 200,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.blue),
+                  child: const Center(
                       child: Text(
                     'Submit',
                     style: TextStyle(fontSize: 18, color: Colors.white),
@@ -217,7 +262,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Center(
                               child: Text(
                                 "or",
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             )),
                       )),
@@ -314,34 +360,48 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Login Here",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[400], fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold)),
                     Text("Sign UP",
-                        style: TextStyle(fontSize: 16, color: Colors.blue[400], fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[400],
+                            fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
               //*
               const Spacer(),
-              SizedBox(
-                child: Column(
-                  children: [
-                    const Text("By continuing, you agree to",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 147, 195, 234),
-                          fontSize: 14,
-                        )),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Promilo's ",
-                        style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 147, 195, 234)),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: "Terms of use & privacy policy",
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black)),
-                        ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  child: Column(
+                    children: [
+                      const Text("By continuing, you agree to",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 147, 195, 234),
+                            fontSize: 14,
+                          )),
+                      RichText(
+                        text: const TextSpan(
+                          text: "Promilo's ",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 147, 195, 234)),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: "Terms of use & privacy policy",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

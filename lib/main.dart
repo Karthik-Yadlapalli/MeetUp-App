@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meet_up/app_home.dart';
-import 'package:meet_up/screens/description_screen.dart';
 import 'package:meet_up/screens/login_screen.dart';
-import 'package:meet_up/screens/meetup_screen.dart';
-import 'package:meet_up/services/auth_service.dart';
+
 
 void main() {
   runApp(const MyApp());
